@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { getFriends } from "../../api/friendsApi";
 import { Plus } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [friends, setFriends] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -84,7 +86,8 @@ const Dashboard = () => {
           {friends.map((friend) => (
             <div
               key={friend.id}
-              className="border rounded-lg p-4 text-center space-y-2"
+              onClick={() => navigate(`/friend/${friend.id}`)}
+              className="border rounded-lg p-4 text-center space-y-2 cursor-pointer hover:shadow-lg transition"
             >
               <img
                 src={friend.picture}
