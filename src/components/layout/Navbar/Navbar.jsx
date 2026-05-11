@@ -7,14 +7,14 @@ const Navbar = () => {
 
   const linkClass = ({ isActive }) =>
     `flex items-center gap-2 px-4 py-2 rounded-md transition ${
-      isActive ? "bg-green-700 text-white" : "text-gray-700 hover:bg-gray-100"
+      isActive ? "bg-emerald-900 text-white" : "text-gray-700 hover:bg-gray-100"
     }`;
 
   return (
-    <nav className="w-full border-b px-4 py-3 flex items-center justify-between">
+    <nav className="w-full border-b px-4 py-3 flex items-center justify-between shadow-xs">
       {/* Logo */}
       <div className="text-2xl font-bold">
-        Keen<span className="text-green-700">Keeper</span>
+        Keen<span className="text-emerald-900">Keeper</span>
       </div>
 
       {/* Desktop Links */}
