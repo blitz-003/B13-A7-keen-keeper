@@ -244,7 +244,7 @@ const FriendDetail = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <button
-            onClick={() => handleCommunication("call")}
+            onClick={() => handleCommunication("Call")}
             className="bg-gray-100 rounded-xl p-5 flex flex-col items-center gap-2 hover:bg-gray-200"
           >
             <Phone />
@@ -252,7 +252,7 @@ const FriendDetail = () => {
           </button>
 
           <button
-            onClick={() => handleCommunication("text")}
+            onClick={() => handleCommunication("Text")}
             className="bg-gray-100 rounded-xl p-5 flex flex-col items-center gap-2 hover:bg-gray-200"
           >
             <MessageSquare />
@@ -260,7 +260,7 @@ const FriendDetail = () => {
           </button>
 
           <button
-            onClick={() => handleCommunication("video")}
+            onClick={() => handleCommunication("Video")}
             className="bg-gray-100 rounded-xl p-5 flex flex-col items-center gap-2 hover:bg-gray-200"
           >
             <Video />
