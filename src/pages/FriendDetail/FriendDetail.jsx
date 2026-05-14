@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { getFriends } from "../../api/friendsApi";
+import toast from "react-hot-toast";
+import { useCommunication } from "../../hooks/useCommunication";
 
 import {
   AlarmClock,
@@ -17,6 +19,23 @@ const FriendDetail = () => {
 
   const [friend, setFriend] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { addCommunication } = useCommunication();
+
+  const handleCommunication = (type) => {
+    if (!friend) return;
+
+    const event = {
+      id: Date.now(),
+      friendId: friend.id,
+      name: friend.name,
+      type,
+      timestamp: new Date().toISOString(),
+    };
+
+    addCommunication(event);
+
+    toast.success(`${type} with ${friend.name}!`);
+  };
 
   useEffect(() => {
     const fetchFriend = async () => {
@@ -224,17 +243,26 @@ const FriendDetail = () => {
         <p className="text-emerald-700 font-semibold mb-4">Quick Check-In</p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <button className="bg-gray-100 rounded-xl p-5 flex flex-col items-center gap-2 hover:bg-gray-200">
+          <button
+            onClick={() => handleCommunication("call")}
+            className="bg-gray-100 rounded-xl p-5 flex flex-col items-center gap-2 hover:bg-gray-200"
+          >
             <Phone />
             Call
           </button>
 
-          <button className="bg-gray-100 rounded-xl p-5 flex flex-col items-center gap-2 hover:bg-gray-200">
+          <button
+            onClick={() => handleCommunication("text")}
+            className="bg-gray-100 rounded-xl p-5 flex flex-col items-center gap-2 hover:bg-gray-200"
+          >
             <MessageSquare />
             Text
           </button>
 
-          <button className="bg-gray-100 rounded-xl p-5 flex flex-col items-center gap-2 hover:bg-gray-200">
+          <button
+            onClick={() => handleCommunication("video")}
+            className="bg-gray-100 rounded-xl p-5 flex flex-col items-center gap-2 hover:bg-gray-200"
+          >
             <Video />
             Video
           </button>
