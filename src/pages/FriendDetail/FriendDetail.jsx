@@ -21,7 +21,6 @@ const FriendDetail = () => {
   useEffect(() => {
     const fetchFriend = async () => {
       const friends = await getFriends();
-
       const foundFriend = friends.find((f) => f.id === Number(id));
 
       setFriend(foundFriend);
@@ -31,13 +30,8 @@ const FriendDetail = () => {
     fetchFriend();
   }, [id]);
 
-  if (loading) {
-    return <p>Loading friend...</p>;
-  }
-
-  if (!friend) {
-    return <p>Friend not found</p>;
-  }
+  if (loading) return <p>Loading friend...</p>;
+  if (!friend) return <p>Friend not found</p>;
 
   const statusColor =
     friend.status === "overdue"
@@ -49,27 +43,29 @@ const FriendDetail = () => {
   return (
     <div
       className="
-    grid grid-cols-1 lg:grid-cols-5 lg:grid-rows-8
-    gap-4
-    mx-auto
-    px-4
-    lg:px-0
-    my-10
-    max-w-7xl
-  "
+        grid
+        grid-cols-1
+        md:grid-cols-2
+        lg:grid-cols-5
+
+        gap-4
+        mx-auto
+        px-4
+        lg:px-0
+        my-10
+        max-w-7xl
+      "
     >
-      {/* PROFILE CARD */}
+      {/* PROFILE */}
       <div
         className="
-        border rounded-xl p-6 flex flex-col items-center text-center gap-4
+          border rounded-xl p-6 flex flex-col items-center text-center gap-y-2
 
-        lg:col-start-1
-        lg:col-end-3
+          md:col-span-2
 
-        lg:row-start-1
-        lg:row-end-6
-        
-      "
+          lg:col-start-1 lg:col-end-3
+          lg:row-start-1 lg:row-end-5
+        "
       >
         <img
           src={friend.picture}
@@ -83,7 +79,7 @@ const FriendDetail = () => {
           {friend.status}
         </span>
 
-        <div className="flex flex-wrap justify-center gap-2">
+        <div className="flex flex-wrap justify-center gap-3">
           {friend.tags.map((tag, i) => (
             <span
               key={i}
@@ -102,15 +98,13 @@ const FriendDetail = () => {
       {/* SNOOZE */}
       <button
         className="
-        border rounded-xl flex items-center justify-center gap-2 hover:bg-gray-50 transition
+          border rounded-xl flex items-center justify-center gap-2 p-4 hover:bg-gray-50
 
-        lg:col-start-1
-        lg:col-end-3
+          md:col-span-1
 
-        lg:row-start-6
-        lg:row-end-7
-        p-4
-      "
+          lg:col-start-1 lg:col-end-3
+          lg:row-start-5 lg:row-end-6
+        "
       >
         <AlarmClock />
         Snooze
@@ -119,15 +113,13 @@ const FriendDetail = () => {
       {/* ARCHIVE */}
       <button
         className="
-        border rounded-xl flex items-center justify-center gap-2 hover:bg-gray-50 transition
+          border rounded-xl flex items-center justify-center gap-2 p-4 hover:bg-gray-50
 
-        lg:col-start-1
-        lg:col-end-3
+          md:col-span-1
 
-        lg:row-start-7
-        lg:row-end-8
-        p-4
-      "
+          lg:col-start-1 lg:col-end-3
+          lg:row-start-6 lg:row-end-7
+        "
       >
         <Archive />
         Archive
@@ -136,95 +128,84 @@ const FriendDetail = () => {
       {/* DELETE */}
       <button
         className="
-        border rounded-xl flex items-center justify-center gap-2 text-red-500 hover:bg-red-50 transition
+          border rounded-xl flex items-center justify-center gap-2 p-4 text-red-500 hover:bg-red-50
 
-        lg:col-start-1
-        lg:col-end-3
+          md:col-span-2
 
-        lg:row-start-8
-        lg:row-end-9
-        p-4
-      "
+          lg:col-start-1 lg:col-end-3
+          lg:row-start-7 lg:row-end-8
+        "
       >
         <Trash2 />
         Delete
       </button>
 
-      {/* DAYS CARD */}
+      {/* DAYS */}
       <div
         className="
-        border rounded-xl flex flex-col justify-center items-center text-center
+          border rounded-xl flex flex-col justify-center items-center text-center p-4
 
-        lg:col-start-3
-        lg:col-end-4
+          md:col-span-1
 
-        lg:row-start-1
-        lg:row-end-4
-        p-4
-      "
+          lg:col-start-3 lg:col-end-4
+          lg:row-start-1 lg:row-end-4
+        "
       >
         <h2 className="text-3xl font-bold">{friend.days_since_contact}</h2>
-
         <p className="text-gray-500">Days Since Contact</p>
       </div>
 
-      {/* GOAL CARD */}
+      {/* GOAL */}
       <div
         className="
-        border rounded-xl flex flex-col justify-center items-center text-center
+          border rounded-xl flex flex-col justify-center items-center text-center p-4
 
-        lg:col-start-4
-        lg:col-end-5
+          md:col-span-1
 
-        lg:row-start-1
-        lg:row-end-4
-        p-4
-      "
+          lg:col-start-4 lg:col-end-5
+          lg:row-start-1 lg:row-end-4
+        "
       >
         <h2 className="text-3xl font-bold">{friend.goal}</h2>
-
         <p className="text-gray-500">Goal (Days)</p>
       </div>
 
-      {/* NEXT DUE CARD */}
+      {/* NEXT DUE */}
       <div
         className="
-        border rounded-xl flex flex-col justify-center items-center text-center
+          border rounded-xl flex flex-col justify-center items-center text-center p-4
 
-        lg:col-start-5
-        lg:col-end-6
+          md:col-span-2
 
-        lg:row-start-1
-        lg:row-end-4
-        p-4
-      "
+          lg:col-start-5 lg:col-end-6
+          lg:row-start-1 lg:row-end-4
+        "
       >
         <h2 className="text-lg font-bold">{friend.next_due_date}</h2>
-
         <p className="text-gray-500">Next Due</p>
       </div>
 
       {/* RELATIONSHIP GOAL */}
       <div
         className="
-        border rounded-xl p-6 sm:flex-col sm:gap-y-10 md:flex items-center justify-between
+    border rounded-xl p-6
+    flex flex-col gap-4 justify-between
 
-        lg:col-start-3
-        lg:col-end-6
+    lg:flex-row lg:justify-between lg:items-center
 
-        lg:row-start-4
-        lg:row-end-6
-      "
+    md:col-span-2
+    lg:col-start-3 lg:col-end-6
+    lg:row-start-4 lg:row-end-6
+  "
       >
         <div className="space-y-2">
           <p className="text-emerald-800 font-semibold">Relationship Goal</p>
-
           <h2 className="text-xl font-bold">
             Connect every {friend.goal} days
           </h2>
         </div>
 
-        <button className="bg-gray-200 px-4 py-2 rounded-md hover:bg-gray-300 transition mt-4">
+        <button className="bg-gray-200 px-4 py-2 rounded-md hover:bg-gray-300 transition w-fit">
           Edit
         </button>
       </div>
@@ -232,34 +213,30 @@ const FriendDetail = () => {
       {/* QUICK CHECK-IN */}
       <div
         className="
-        border rounded-xl p-6
+          border rounded-xl p-6
 
-        lg:col-start-3
-        lg:col-end-6
+          md:col-span-2
 
-        lg:row-start-6
-        lg:row-end-9
-      "
+          lg:col-start-3 lg:col-end-6
+          lg:row-start-6 lg:row-end-9
+        "
       >
         <p className="text-emerald-700 font-semibold mb-4">Quick Check-In</p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {/* CALL */}
-          <button className="bg-gray-100 rounded-xl p-6 flex flex-col items-center gap-2 hover:bg-gray-200 transition">
+          <button className="bg-gray-100 rounded-xl p-5 flex flex-col items-center gap-2 hover:bg-gray-200">
             <Phone />
-            <span>Call</span>
+            Call
           </button>
 
-          {/* TEXT */}
-          <button className="bg-gray-100 rounded-xl p-6 flex flex-col items-center gap-2 hover:bg-gray-200 transition">
+          <button className="bg-gray-100 rounded-xl p-5 flex flex-col items-center gap-2 hover:bg-gray-200">
             <MessageSquare />
-            <span>Text</span>
+            Text
           </button>
 
-          {/* VIDEO */}
-          <button className="bg-gray-100 rounded-xl p-6 flex flex-col items-center gap-2 hover:bg-gray-200 transition">
+          <button className="bg-gray-100 rounded-xl p-5 flex flex-col items-center gap-2 hover:bg-gray-200">
             <Video />
-            <span>Video</span>
+            Video
           </button>
         </div>
       </div>
