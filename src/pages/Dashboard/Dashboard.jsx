@@ -19,7 +19,7 @@ const Dashboard = () => {
   }, []);
 
   if (loading) {
-    return <p className="text-center">Loading friends...</p>;
+    return <p className="text-center text-3xl">Loading friends...</p>;
   }
 
   // Stats calculations
