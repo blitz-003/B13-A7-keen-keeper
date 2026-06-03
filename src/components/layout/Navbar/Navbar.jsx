@@ -14,7 +14,9 @@ const Navbar = () => {
     <nav className="w-full border-b px-4 py-3 flex items-center justify-between shadow-xs">
       {/* Logo */}
       <div className="text-2xl font-bold">
-        Keen<span className="text-emerald-900">Keeper</span>
+        <NavLink to="/">
+          Keen<span className="text-emerald-900">Keeper</span>
+        </NavLink>
       </div>
 
       {/* Desktop Links */}
