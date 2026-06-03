@@ -5,6 +5,7 @@ import Timeline from "../pages/Timeline/Timeline";
 import Stats from "../pages/Stats/Stats";
 import FriendDetail from "../pages/FriendDetail/FriendDetail";
 import Layout from "../layouts/Layout";
+import NotFound from "@/pages/NotFound/NotFound";
 
 const AppRoutes = () => {
   return (
@@ -22,6 +23,7 @@ const AppRoutes = () => {
 
         {/* Friend Detail Page */}
         <Route path="friend/:id" element={<FriendDetail />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );
