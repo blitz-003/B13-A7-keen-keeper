@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { PieChart, Pie, Cell, Tooltip } from "recharts";
 import { useCommunication } from "../../hooks/useCommunication";
+import { Link } from "react-router-dom";
 
 const Analytics = () => {
   const { communications } = useCommunication();
@@ -20,18 +21,29 @@ const Analytics = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 space-y-6">
       {/* TITLE */}
-      <h1 className="text-3xl font-bold text-center">Friendship analytics</h1>
 
       {stats[0].value == 0 && stats[1].value == 0 && stats[2].value == 0 ? (
         <>
-          <div className="">
-            <p className="text-2xl min-h-[50vh] text-center">
+          <div className="min-h-[50vh] flex flex-col justify-center items-center">
+            <h1 className="text-3xl font-bold text-center">
+              Friendship analytics
+            </h1>
+            <p className="text-2xl text-center text-gray-500">
               No records available
             </p>
+            <Link
+              to="/"
+              className="mt-5 px-6 py-3 max-w-lg bg-black text-white rounded-xl text-center hover:bg-gray-800 transition"
+            >
+              Go to Homepage
+            </Link>
           </div>
         </>
       ) : (
         <>
+          <h1 className="text-3xl font-bold text-center">
+            Friendship analytics
+          </h1>
           <div className="border rounded-xl p-6 space-y-6">
             {/* CARD TITLE */}
             <h2 className="text-lg font-semibold text-left">
